@@ -1,0 +1,102 @@
+{
+    "Source":{
+        "sourceType": 0,
+        "sourcePath": "data/platebaku.avi"
+    },
+
+    "Modules":[
+        {
+            "name": "VehicleDetector",
+            "isActive": 1,
+            "path": "engines/coco_yolov4-tiny_dynamic_416_fp16_b16.engine",
+            "names": "data/coco.names",
+            "batch": 4,
+            "conf_thresh": 0.25,
+            "nms_thresh": 0.4,
+            "submodules":[
+                {
+                    "name": "VehicleAttributeClassifier",
+                    "isActive": 0,
+                    "path": "engines/xxx.engine",
+                    "names": "",
+                    "batch": 4,
+                    "conf_thresh": 0.25
+                },
+                {
+                    "name": "PlateDetector",
+                    "isActive": 1,
+                    "path": "engines/lpd_yolov4-tiny_dynamic_256_fp16_b16.engine",
+                    "names": "data/plate.names",
+                    "batch": 4,
+                    "conf_thresh": 0.5,
+                    "nms_thresh": 0.4,
+                    "submodules":[
+                        {
+                            "name": "CharacterDetector",
+                            "isActive": 1,
+                            "path": "engines/lpcd_yolov4-tiny_dynamic_416_fp16_b16.engine",
+                            "names": "data/char.names",
+                            "batch": 4,
+                            "conf_thresh": 0.25,
+                            "nms_thresh": 0.4
+                        },
+                        {
+                            "name": "PlateTypeClassifier",
+                            "isActive": 0,
+                            "path": "engines/xxx.engine",
+                            "names": "",
+                            "batch": 4,
+                            "conf_thresh": 0.25
+                        },
+                        {
+                            "name": "PlateRegionIdentifier",
+                            "isActive": 0,
+                            "path": "engines/xxx.engine",
+                            "names": "",
+                            "batch": 4,
+                            "conf_thresh": 0.25
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "FaceDetector",
+            "isActive": 0,
+            "path": "engines/xxx.engine",
+            "names": "data/coco.names",
+            "batch": 4,
+            "conf_thresh": 0.25,
+            "nms_thresh": 0.4,
+            "submodules":[
+                {
+                    "name": "FaceRecognition",
+                    "isActive": 0,
+                    "path": "engines/xxx.engine",
+                    "names": "",
+                    "batch": 4,
+                    "conf_thresh": 0.25
+                }
+            ]
+        },
+        {
+            "name": "TrafficSignDetector",
+            "isActive": 0,
+            "path": "engines/xxx.engine",
+            "names": "data/coco.names",
+            "batch": 4,
+            "conf_thresh": 0.25,
+            "nms_thresh": 0.4,
+            "submodules":[
+                {
+                    "name": "TrafficSignClassifier",
+                    "isActive": 0,
+                    "path": "engines/xxx.engine",
+                    "names": "",
+                    "batch": 4,
+                    "conf_thresh": 0.25
+                }
+            ]
+        }
+    ]
+}
